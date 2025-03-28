@@ -1,10 +1,6 @@
 # Kuvaus
 
-Tämä on HY:n [Ruby on Rails kurssin](https://github.com/mluukkai/WebPalvelinohjelmointi2023) palautusrepo.
-
-## TODO
-
-Linkki sovelluksen tuotantoversioon.
+Tämä on HY:n [Ruby on Rails kurssin](https://github.com/mluukkai/WebPalvelinohjelmointi2023) palautusrepo. Tuotantoversio pyörii [tässä](https://ratebeer-ttj.fly.dev)
 
 ## Apu tarkastajille
 
