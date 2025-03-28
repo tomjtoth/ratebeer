@@ -1,24 +1,19 @@
-# README
+# Kuvaus
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Tämä on HY:n [Ruby on Rails kurssin](https://github.com/mluukkai/WebPalvelinohjelmointi2023) palautusrepo.
 
-Things you may want to cover:
+## TODO
 
-* Ruby version
+Linkki sovelluksen tuotantoversioon.
 
-* System dependencies
+## Apu tarkastajille
 
-* Configuration
+Kurssimateriaalin mukainen rails:in versio 7.0.4 ajama `rails new ratebeer` komento jäi jumiin, joten jouduin version 8.0.0 käyttää:
 
-* Database creation
+```sh
+rbenv install 3.2.0
+rbenv global 3.2.0
+gem install rails -v 8.0.0
+```
 
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+Muutamaa poikkeusta olen jo huomannut (kurssimateriaalin esimerkkeihin verrattuna), mutten mitään olennaista.
