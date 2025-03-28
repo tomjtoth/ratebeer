@@ -3,4 +3,9 @@
   <i>Established in <%= brewery.year %></i>
   <br/>
   Number of beers: <%= @brewery.beers.count %>
+  <p>
+    <% @brewery.beers.each do |beer| %>
+      <%= link_to beer.name, beer %>
+    <% end %>
+  </p>
 </div>
