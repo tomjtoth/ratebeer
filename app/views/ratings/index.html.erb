@@ -4,8 +4,7 @@
   <% @ratings.each do |rating| %>
     <li>
       <%= render rating %>
-      <%= button_to 
-            'delete', 
+      <%= button_to 'delete', 
             rating, 
             method: :delete, 
             form: { 
