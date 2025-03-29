@@ -6,4 +6,8 @@ class Beer < ApplicationRecord
         total_score = ratings.reduce(0) { |sum, r| sum + r.score }
         (total_score / ratings.size).to_f
     end
+
+    def to_s
+      "#{name} (#{brewery.name})"
+    end
 end
