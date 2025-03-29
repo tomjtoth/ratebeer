@@ -85,3 +85,6 @@ Layout/IndentationStyle:
 Metrics/MethodLength:
   Enabled: true
   Max: 15
+
+Style/StringLiterals:
+  EnforcedStyle: double_quotes
