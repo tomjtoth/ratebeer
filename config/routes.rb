@@ -15,4 +15,6 @@ Rails.application.routes.draw do
   # root "posts#index"
 
   root "breweries#index"
+
+  get "kaikki_bisset", to: "beers#index"
 end
