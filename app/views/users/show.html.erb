@@ -3,6 +3,26 @@
 <%= render @user %>
 
 <div>
+  <h3>Ratings</h3>
+  <%= @user.username %> has
+  <% if @user.ratings.empty? %>
+    not rated any beers, yet...
+  <% else %>
+    made
+    <%= "#{pluralize(@user.ratings.size, "rating", "ratings")}  with an average of #{@user.average_rating}" %>
+  <% end %>
+  <ul>
+    <% @ratings.each do |rating| %>
+      <li>
+        <%= rating.beer.name %>:
+        <%= rating.score %> =&gt;
+        <%= link_to "Delete", rating, 
+        data: { 
+          "turbo-method": :delete
+        } %>
+      </li>
+    <% end %>
+  </ul>
   <%= link_to "Edit this user", edit_user_path(@user) %> |
   <%= link_to "Back to users", users_path %>
 
