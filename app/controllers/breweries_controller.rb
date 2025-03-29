@@ -73,7 +73,6 @@ class BreweriesController < ApplicationController
       admin_accounts = { "pekka" => "beer", "arto" => "foobar", "matti" => "ittam", "vilma" => "kangas" }
 
       authenticate_or_request_with_http_basic do |username, password|
-        binding.pry
         if admin_accounts.key?(username) && admin_accounts[username] == password
           return true
         end
