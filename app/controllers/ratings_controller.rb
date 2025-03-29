@@ -9,12 +9,16 @@ class RatingsController < ApplicationController
   end
 
   def create
-    rating = Rating.new params.require(:rating).permit(:score, :beer_id)
-    rating.user = current_user
-    rating.save
+    @rating = Rating.new params.require(:rating).permit(:score, :beer_id)
+    @rating.user = current_user
 
-    session[:last_rating] = "#{rating.beer.name} #{rating.score} points"
-    redirect_to ratings_path
+    if @rating.save
+      session[:last_rating] = "#{@rating.beer.name} #{@rating.score} points"
+      redirect_to user_path current_user
+    else
+      @beers = Beer.all
+      render :new, status: :unprocessable_entity
+    end
   end
 
   def destroy
