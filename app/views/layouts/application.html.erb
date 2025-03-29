@@ -30,6 +30,7 @@
       <%= link_to 'users', users_path %>
 
       <% if current_user %>
+        <%= link_to 'Rate a beer', new_rating_path %>
         <%= link_to "Log out", 
           signout_path,
           data: {
