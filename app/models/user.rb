@@ -13,6 +13,9 @@ class User < ApplicationRecord
     ratings.order(score: :desc).limit(1).first.beer
   end
 
+  def favorite_style
+  end
+
   private
     def password_is_complex
       errors.add(:password, "not long enough") if !password or password.length < 4
