@@ -18,11 +18,11 @@ class Beer < ApplicationRecord
       ratings.map { |r| r.score }.sum / ratings.count.to_f
     end
 
-    private 
+    private
       def assigned_brewery_exists
         errors.add(:brewery, "does not exist") if not (
-          brewery and 
-          brewery.id and 
+          brewery and
+          brewery.id and
           Brewery.find(brewery.id)
         )
       end
