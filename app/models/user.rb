@@ -7,6 +7,12 @@ class User < ApplicationRecord
   has_secure_password
   include RatingAverage
 
+  def favorite_beer
+    return nil if ratings.empty?
+
+    ratings.order(score: :desc).limit(1).first.beer
+  end
+
   private
     def password_is_complex
       errors.add(:password, "not long enough") if !password or password.length < 4
