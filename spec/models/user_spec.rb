@@ -74,6 +74,19 @@ RSpec.describe User, type: :model do
       expect(user.favorite_beer).to eq(best)
     end
   end
+
+  describe "favorite style" do
+    let(:user){ FactoryBot.create(:user) }
+
+    it "method can be called" do
+      expect(user).to respond_to(:favorite_style)
+    end
+
+    it "returns nil without ratings" do
+      expect(user.favorite_style).to eq(nil)
+    end
+
+  end
 end
 
 def create_beer_with_rating(object, score)
