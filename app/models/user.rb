@@ -9,8 +9,8 @@ class User < ApplicationRecord
 
   private
     def password_is_complex
-      errors.add(:password, "not long enough") if password.length < 4
-      errors.add(:password, "must contain at least 1 capital letter") unless password.match(/[A-Z]/)
-      errors.add(:password, "must contain at least 1 digit") unless password.match(/[0-9]/)
+      errors.add(:password, "not long enough") if !password or password.length < 4
+      errors.add(:password, "must contain at least 1 capital letter") unless password and password.match(/[A-Z]/)
+      errors.add(:password, "must contain at least 1 digit") unless password and password.match(/[0-9]/)
     end
 end
