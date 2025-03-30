@@ -1,10 +1,7 @@
 class Brewery < ApplicationRecord
     validates :name, length: { minimum: 1 }
-    validates :year, numericality: {
-        only_integer: true,
-        greater_than_or_equal_to: 1040,
-        less_than_or_equal_to: 2022
-    }
+    validate :year_between_1040_and_current_year
+    
     has_many :beers, dependent: :destroy
     has_many :ratings, through: :beers
     include RatingAverage
@@ -19,4 +16,13 @@ class Brewery < ApplicationRecord
         self.year = 2022
         puts "changed year to #{year}"
     end
+
+    private
+        def year_between_1040_and_current_year
+            if year > Time.now.year
+                errors.add(:year, "year can't be in the future")
+            elsif year < 1040
+                errors.add(:year, "year can't be earlier, than 1040")
+            end
+        end
 end
