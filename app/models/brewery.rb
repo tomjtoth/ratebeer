@@ -1,7 +1,7 @@
 class Brewery < ApplicationRecord
     validates :name, length: { minimum: 1 }
     validate :year_between_1040_and_current_year
-    
+
     has_many :beers, dependent: :destroy
     has_many :ratings, through: :beers
     include RatingAverage
