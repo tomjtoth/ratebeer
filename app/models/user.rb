@@ -2,7 +2,7 @@ class User < ApplicationRecord
   validates :username, uniqueness: true, length: { minimum: 3, maximum: 30 }
   validate :password_is_complex
 
-  has_many :ratings
+  has_many :ratings, dependent: :destroy
   has_many :beers, through: :ratings
   has_secure_password
   include RatingAverage
