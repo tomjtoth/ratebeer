@@ -52,11 +52,11 @@ RSpec.describe User, type: :model do
   describe "favorite beer" do
     let(:user){ FactoryBot.create(:user) }
 
-    it "has method for determining the favorite beer" do
+    it "method can be called" do
       expect(user).to respond_to(:favorite_beer)
     end
 
-    it "without ratings does not have a favorite beer" do
+    it "returns nil without ratings" do
       expect(user.favorite_beer).to eq(nil)
     end
 
