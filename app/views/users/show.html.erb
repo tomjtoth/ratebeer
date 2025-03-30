@@ -17,12 +17,10 @@
   <ul>
     <% @ratings.each do |rating| %>
       <li>
-        <%= rating.beer.name %>:
-        <%= rating.score %> =&gt;
-        <%= link_to "Delete", rating, 
-        data: { 
-          "turbo-method": :delete
-        } %>
+        <%= rating.to_s %>
+        <% if @user == current_user %>
+          <%= link_to "Delete", rating, data: {turbo_method: :delete} %>
+        <% end %>
       </li>
     <% end %>
   </ul>
