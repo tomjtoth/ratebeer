@@ -20,9 +20,9 @@ class Brewery < ApplicationRecord
     private
         def year_between_1040_and_current_year
             if year > Time.now.year
-                errors.add(:year, "year can't be in the future")
+                errors.add(:year, "can't be in the future")
             elsif year < 1040
-                errors.add(:year, "year can't be earlier, than 1040")
+                errors.add(:year, "can't be earlier, than 1040")
             end
         end
 end
