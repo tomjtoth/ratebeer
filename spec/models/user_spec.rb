@@ -32,7 +32,7 @@ RSpec.describe User, type: :model do
 
   describe "with a proper password" do
     let(:user){ User.create username: "Pekka", password: "Secret1", password_confirmation: "Secret1" }
-    let(:test_brewery) { Brewery.new name: "test", year: 2000 }
+    let(:test_brewery) { Brewery.create name: "test", year: 2000 }
     let(:test_beer) { Beer.create name: "testbeer", style: "teststyle", brewery: test_brewery }
 
     it "is saved" do
