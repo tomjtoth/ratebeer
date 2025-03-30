@@ -7,11 +7,27 @@ RSpec.describe User, type: :model do
     expect(user.username).to eq("Pekka")
   end
 
-  it "is not saved without a password" do
-    user = User.create username: "Pekka"
+  describe "is not saved" do
+    it "without a password" do
+      user = User.create username: "Pekka"
 
-    expect(user).not_to be_valid
-    expect(User.count).to eq(0)
+      expect(user).not_to be_valid
+      expect(User.count).to eq(0)
+    end
+
+    it "with a short password" do
+      user = User.create username: "Pekka", password: "qwe"
+  
+      expect(user).not_to be_valid
+      expect(User.count).to eq(0)
+    end
+  
+    it "with a password consisting of [a-z] only" do
+      user = User.create username: "Pekka", password: "qweadsfdsafwerqwADSF"
+  
+      expect(user).not_to be_valid
+      expect(User.count).to eq(0)
+    end
   end
 
   describe "with a proper password" do
