@@ -8,6 +8,6 @@ class Rating < ApplicationRecord
   }
 
   def to_s
-    "tekstiesitys"
+    "#{beer.name} #{score}"
   end
 end
