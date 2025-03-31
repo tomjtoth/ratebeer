@@ -21,6 +21,21 @@ describe "Breweries page" do
             expect(page).to have_content brewery_name
         end
     end
+
+    it "allows user to navigate to page of a Brewery" do
+        breweries = ["Koff", "Karjala", "Schlenkerla"]
+        year = 1896
+        breweries.each do |brewery_name|
+             FactoryBot.create(:brewery, name: brewery_name, year: year += 1)
+        end
+      
+        visit breweries_path
+      
+        click_link "Koff"
+      
+        expect(page).to have_content "Koff"
+        expect(page).to have_content "Established at 1897"
+    end
 end
 
 def visit_n_print(path)
