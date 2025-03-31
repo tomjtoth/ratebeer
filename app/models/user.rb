@@ -14,13 +14,11 @@ class User < ApplicationRecord
   end
 
   def favorite_style
-    return nil if ratings.empty?
+    favorite_by(->(rating) { rating.beer.style })
+  end
 
-    style_scores = ratings
-      .group_by { |rating| rating.beer.style }
-      .transform_values { |ratings| ratings.sum(&:score) }
-
-    style_scores.max_by { |style, total_score| total_score }&.first
+  def favorite_brewery
+    favorite_by(->(rating) { rating.beer.brewery })
   end
 
   private
@@ -28,5 +26,15 @@ class User < ApplicationRecord
       errors.add(:password, "not long enough") if !password or password.length < 4
       errors.add(:password, "must contain at least 1 capital letter") unless password and password.match(/[A-Z]/)
       errors.add(:password, "must contain at least 1 digit") unless password and password.match(/[0-9]/)
+    end
+
+    def favorite_by(group_by_closure)
+      return nil if ratings.empty?
+  
+      scores = ratings
+        .group_by { |rating| group_by_closure.call(rating) }
+        .transform_values { |ratings| ratings.sum(&:score) }
+  
+      scores.max_by { |style, total_score| total_score }&.first
     end
 end
