@@ -87,8 +87,6 @@ RSpec.describe User, type: :model do
     end
 
     it "is the one with highest rating if several rated" do
-      ipa = FactoryBot.create(:beer)
-
       create_beers_with_many_ratings({user: user}, 5,10,5,5)
       create_beers_with_many_ratings({user: user, style: "IPA"}, 50)
       create_beers_with_many_ratings({user: user}, 5,5,5)
