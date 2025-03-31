@@ -1,9 +1,7 @@
 require 'rails_helper'
 
 describe "User" do
-    before :each do
-        FactoryBot.create :user
-    end
+    let!(:user) {FactoryBot.create :user}
 
     describe "who has signed up" do
         it "can signin with right credentials" do
@@ -29,6 +27,26 @@ describe "User" do
             expect{
               click_button('Create User')
             }.to change{User.count}.by(1)
+        end
+
+        describe "and signed in + rated beers" do
+            let!(:brewery) { FactoryBot.create :brewery, name: "Koff" }
+            let!(:brewery2) { FactoryBot.create :brewery }
+            let!(:beer1) { FactoryBot.create :beer, name: "iso 3", brewery:brewery }
+            let!(:beer2) { FactoryBot.create :beer, name: "Karhu", brewery:brewery2 }
+            let!(:rating1) { FactoryBot.create(:rating, {user: user, beer: beer1, score: 27})}
+            let!(:rating2) { FactoryBot.create(:rating, {user: user, beer: beer2, score: 35}) }
+        
+            before :each do
+                sign_in(username: "Pekka", password: "Foobar1")
+            end
+
+            it "can see their favorite style and brewery" do
+                visit user_path(user)
+
+                expect(page).to have_content "Their favorite style is #{beer2.style} and favorite brewery is #{beer2.brewery.name}"
+            end
+
         end
     end
 end
