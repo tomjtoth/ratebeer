@@ -86,6 +86,16 @@ RSpec.describe User, type: :model do
       expect(user.favorite_style).to eq(nil)
     end
 
+    it "is the one with highest rating if several rated" do
+      ipa = FactoryBot.create(:beer)
+
+      create_beers_with_many_ratings({user: user}, 5,10,5,5)
+      create_beers_with_many_ratings({user: user, style: "IPA"}, 50)
+      create_beers_with_many_ratings({user: user}, 5,5,5)
+
+      expect(user.favorite_style).to eq("IPA")
+    end
+
   end
 end
 
