@@ -5,7 +5,7 @@ RSpec.describe Beer, type: :model do
 
   describe "can be created" do
     it "with proper: name, year, brewery_id" do
-      beer = FactoryBot.create(:beer, brewery: test_brewery) 
+      beer = FactoryBot.create(:beer, brewery: test_brewery)
       expect(beer).to be_valid
       expect(Beer.count).to eq(1)
     end

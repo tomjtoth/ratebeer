@@ -17,14 +17,14 @@ RSpec.describe User, type: :model do
 
     it "with a short password" do
       user = User.create username: "Pekka", password: "qwe"
-  
+
       expect(user).not_to be_valid
       expect(User.count).to eq(0)
     end
-  
+
     it "with a password consisting of [a-z] only" do
       user = User.create username: "Pekka", password: "qweadsfdsafwerqwADSF"
-  
+
       expect(user).not_to be_valid
       expect(User.count).to eq(0)
     end
@@ -124,10 +124,10 @@ end
 
 def create_beer_with_rating(object, score)
   beer_opts = {}
-  beer_opts[:style] = object[:style] if object[:style] 
-  beer_opts[:brewery] = object[:brewery] if object[:brewery] 
+  beer_opts[:style] = object[:style] if object[:style]
+  beer_opts[:brewery] = object[:brewery] if object[:brewery]
 
-  beer = FactoryBot.create(:beer, **beer_opts)   
+  beer = FactoryBot.create(:beer, **beer_opts)
   FactoryBot.create(:rating, beer: beer, score: score, user: object[:user] )
   beer
 end

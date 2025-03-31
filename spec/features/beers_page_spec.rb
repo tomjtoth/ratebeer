@@ -17,7 +17,7 @@ describe "Beers page" do
         before :each do
             sign_in username: "Pekka", password: "Foobar1"
         end
-    
+
         it "via 'New beer' link works" do
             visit beers_path
             click_link "New beer"
@@ -26,7 +26,7 @@ describe "Beers page" do
             expect(page).to have_content "Name"
             expect(page).to have_content "Style"
             expect(page).to have_content "Brewery"
-            
+
             create_beer({ name: 'UUSI KALJA', style: "IPA", brewery: brew2[:name] })
 
             expect(page).to have_content "Beer was successfully created."
