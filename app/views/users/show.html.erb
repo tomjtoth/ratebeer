@@ -23,7 +23,9 @@
         </li>
       <% end %>
     </ul>
-    Their favorite style is <%= @user.favorite_style %>
+    Their favorite style is <%= @user.favorite_style %> 
+    and favorite brewery is <%= @user.favorite_brewery.name %>
+    </br>
   <% end %>
 
   <% if @user == current_user %>
