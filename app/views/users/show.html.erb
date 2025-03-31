@@ -12,18 +12,20 @@
     not rated any beers, yet...
   <% else %>
     made
-    <%= "#{pluralize(@user.ratings.size, "rating", "ratings")}  with an average of #{@user.average_rating}" %>
+    <%= "#{pluralize(@user.ratings.size, "rating", "ratings")}  with an average of #{@user.average_rating}:" %>
+    <ul>
+      <% @ratings.each do |rating| %>
+        <li>
+          <%= rating.to_s %>
+          <% if @user == current_user %>
+            <%= link_to "Delete", rating, data: {turbo_method: :delete} %>
+          <% end %>
+        </li>
+      <% end %>
+    </ul>
+    Their favorite style is <%= @user.favorite_style %>
   <% end %>
-  <ul>
-    <% @ratings.each do |rating| %>
-      <li>
-        <%= rating.to_s %>
-        <% if @user == current_user %>
-          <%= link_to "Delete", rating, data: {turbo_method: :delete} %>
-        <% end %>
-      </li>
-    <% end %>
-  </ul>
+
   <% if @user == current_user %>
     <%= link_to "Edit this user", edit_user_path(@user) %> |
   <% end %>
