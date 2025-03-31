@@ -1,4 +1,12 @@
-<h2>List of ratings</h2>
+<h2>
+  There
+  <% if @ratings.empty? %>
+    are no ratings, yet...
+  <% else %>
+    <%= @ratings.count == 1 ? "is" : "are" %>
+    <%= pluralize(@ratings.count, "rating") %>:
+  <% end %>
+</h2>
 
 <ul>
   <% @ratings.each do |rating| %>
