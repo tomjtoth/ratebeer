@@ -30,11 +30,11 @@ class User < ApplicationRecord
 
     def favorite_by(group_by_closure)
       return nil if ratings.empty?
-  
+
       scores = ratings
         .group_by { |rating| group_by_closure.call(rating) }
         .transform_values { |ratings| ratings.sum(&:score) }
-  
+
       scores.max_by { |style, total_score| total_score }&.first
     end
 end
