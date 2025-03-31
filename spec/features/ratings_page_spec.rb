@@ -44,10 +44,8 @@ describe "Rating" do
   end
 
   describe "when given by multiple users" do
-    before :each do
-      FactoryBot.create(:rating, {user: user, beer: beer1, score: 27})
-      FactoryBot.create(:rating, {user: user2, beer: beer2, score: 35})
-    end
+    let!(:rating1){ FactoryBot.create(:rating, {user: user, beer: beer1, score: 27})}
+    let!(:rating2){ FactoryBot.create(:rating, {user: user2, beer: beer2, score: 35}) }
 
     it "all show up on the ratings_path" do 
         visit ratings_path
@@ -63,6 +61,23 @@ describe "Rating" do
       visit user_path(user2)
       expect(page).to have_content "#{beer2.name} 35"
       expect(page).not_to have_content "#{beer1.name} 27"
+    end
+
+    it "a removed rating is also deleted from DB" do
+        rating3 = FactoryBot.create(:rating, {user: user, beer: beer2, score: 3})
+        rating4 = FactoryBot.create(:rating, {user: user, beer: beer2, score: 2})
+        rating5 = FactoryBot.create(:rating, {user: user, beer: beer2, score: 50})
+
+        visit user_path(user)
+        within(:xpath, "//li[contains(text(), '#{rating4.beer.name} #{rating4.score}')]") do
+            click_link "Delete"
+        end
+
+        expect(Rating.exists?(rating1.id)).to be true
+        expect(Rating.exists?(rating2.id)).to be true
+        expect(Rating.exists?(rating3.id)).to be true
+        expect(Rating.exists?(rating4.id)).to be false
+        expect(Rating.exists?(rating5.id)).to be true
     end
   end
 end
