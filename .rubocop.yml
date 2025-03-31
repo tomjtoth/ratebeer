@@ -16,7 +16,6 @@ AllCops:
     - test/**
     - test/channels/application_cable/** # for whatever reason this directory was not excluded even though two previous exclusion lines
     - bin/**
-    - spec/**/*
     - config/**/*
     - db/**/*
     - Gemfile

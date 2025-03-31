@@ -38,7 +38,7 @@ describe "Beers page" do
         it "fails with empty name" do
             visit new_beer_path
 
-            create_beer({name: '', style: "IPA", brewery: brew2[:name] })
+            create_beer({ name: '', style: "IPA", brewery: brew2[:name] })
 
             expect(page).to have_content "Name is too short (minimum is 1 character)"
             expect(Beer.all.count).to eq(0)

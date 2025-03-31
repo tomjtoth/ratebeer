@@ -68,8 +68,8 @@ RSpec.describe User, type: :model do
     end
 
     it "is the one with highest rating if several rated" do
-      create_beers_with_many_ratings({user: user}, 10, 20, 15, 7, 9)
-      best = create_beer_with_rating({ user: user }, 25 )
+      create_beers_with_many_ratings({ user: user }, 10, 20, 15, 7, 9)
+      best = create_beer_with_rating({ user: user }, 25)
 
       expect(user.favorite_beer).to eq(best)
     end
@@ -87,13 +87,12 @@ RSpec.describe User, type: :model do
     end
 
     it "is the one with highest rating if several rated" do
-      create_beers_with_many_ratings({user: user}, 5,10,5,5)
-      create_beers_with_many_ratings({user: user, style: "IPA"}, 50)
-      create_beers_with_many_ratings({user: user}, 5,5,5)
+      create_beers_with_many_ratings({ user: user }, 5, 10, 5, 5)
+      create_beers_with_many_ratings({ user: user, style: "IPA" }, 50)
+      create_beers_with_many_ratings({ user: user }, 5, 5, 5)
 
       expect(user.favorite_style).to eq("IPA")
     end
-
   end
 
   describe "favorite brewery" do
@@ -112,13 +111,12 @@ RSpec.describe User, type: :model do
       brew2 = FactoryBot.create(:brewery)
       brew3 = FactoryBot.create(:brewery)
 
-      create_beers_with_many_ratings({user: user, brewery: brew1}, 5,10,5,5)
-      create_beers_with_many_ratings({user: user, brewery: brew2, style: "IPA"}, 50)
-      create_beers_with_many_ratings({user: user, brewery: brew3}, 5,5,5)
+      create_beers_with_many_ratings({ user: user, brewery: brew1 }, 5, 10, 5, 5)
+      create_beers_with_many_ratings({ user: user, brewery: brew2, style: "IPA" }, 50)
+      create_beers_with_many_ratings({ user: user, brewery: brew3 }, 5, 5, 5)
 
       expect(user.favorite_brewery).to eq(brew2)
     end
-
   end
 end
 
@@ -128,7 +126,7 @@ def create_beer_with_rating(object, score)
   beer_opts[:brewery] = object[:brewery] if object[:brewery]
 
   beer = FactoryBot.create(:beer, **beer_opts)
-  FactoryBot.create(:rating, beer: beer, score: score, user: object[:user] )
+  FactoryBot.create(:rating, beer: beer, score: score, user: object[:user])
   beer
 end
 
