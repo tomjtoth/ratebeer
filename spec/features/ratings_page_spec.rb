@@ -12,6 +12,22 @@ describe "Rating" do
     sign_in(username: "Pekka", password: "Foobar1")
   end
 
+  it "shows rating number correctly" do
+    visit ratings_path
+    expect(page).to have_content "There are no ratings, yet..."
+    
+    FactoryBot.create(:rating, {user: user, beer: beer1, score: 27})
+    visit ratings_path
+    expect(page).to have_content "There is 1 rating:"
+    expect(page).to have_content "#{beer1.name} 27"
+    
+
+    FactoryBot.create(:rating, {user: user, beer: beer2, score: 35})
+    visit ratings_path
+    expect(page).to have_content "There are #{Rating.count} ratings:"
+    expect(page).to have_content "#{beer2.name} 35"
+  end
+
   it "when given, is registered to the beer and user who is signed in" do
     visit new_rating_path
     select('iso 3', from: 'rating[beer_id]')
