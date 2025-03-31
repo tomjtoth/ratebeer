@@ -95,6 +95,31 @@ RSpec.describe User, type: :model do
     end
 
   end
+
+  describe "favorite brewery" do
+    let(:user){ FactoryBot.create(:user) }
+
+    it "method can be called" do
+      expect(user).to respond_to(:favorite_brewery)
+    end
+
+    it "returns nil without ratings" do
+      expect(user.favorite_brewery).to eq(nil)
+    end
+
+    it "is the one with highest rating if several rated" do
+      brew1 = FactoryBot.create(:brewery)
+      brew2 = FactoryBot.create(:brewery)
+      brew3 = FactoryBot.create(:brewery)
+
+      create_beers_with_many_ratings({user: user, brewery: brew1}, 5,10,5,5)
+      create_beers_with_many_ratings({user: user, brewery: brew2, style: "IPA"}, 50)
+      create_beers_with_many_ratings({user: user, brewery: brew3}, 5,5,5)
+
+      expect(user.favorite_brewery).to eq(brew2)
+    end
+
+  end
 end
 
 def create_beer_with_rating(object, score)
