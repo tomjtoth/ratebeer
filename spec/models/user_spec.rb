@@ -98,12 +98,11 @@ RSpec.describe User, type: :model do
 end
 
 def create_beer_with_rating(object, score)
-  beer = if object[:style] 
-    FactoryBot.create(:beer, style: object[:style]) 
-  else 
-    FactoryBot.create(:beer) 
-  end
-  
+  beer_opts = {}
+  beer_opts[:style] = object[:style] if object[:style] 
+  beer_opts[:brewery] = object[:brewery] if object[:brewery] 
+
+  beer = FactoryBot.create(:beer, **beer_opts)   
   FactoryBot.create(:rating, beer: beer, score: score, user: object[:user] )
   beer
 end
