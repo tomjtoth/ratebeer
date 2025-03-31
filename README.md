@@ -13,3 +13,6 @@ gem install rails -v 8.0.0
 ```
 
 Muutamaa poikkeusta olen jo huomannut (kurssimateriaalin esimerkkeihin verrattuna), mutten mitään olennaista.
+
+- viikon 4 GHA kohtaiset tehtävät oli (railsin version 8 takia kai) alusta asti valmiina, piti vaan hienosäätää
+- myös viikon 4 Fly.io deplaus on ollut eka viikon lopusta asti käytössä
