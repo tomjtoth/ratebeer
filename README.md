@@ -1,3 +1,5 @@
+[![Maintainability](https://api.codeclimate.com/v1/badges/049bf9b817c41d04c8ac/maintainability)](https://codeclimate.com/github/tomjtoth/ratebeer/maintainability)
+
 # Kuvaus
 
 Tämä on HY:n [Ruby on Rails kurssin](https://github.com/mluukkai/WebPalvelinohjelmointi2023) palautusrepo. Tuotantoversio pyörii [tässä](https://ratebeer-ttj.fly.dev)
