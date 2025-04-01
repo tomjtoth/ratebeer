@@ -22,6 +22,7 @@ class MembershipsController < ApplicationController
   # POST /memberships or /memberships.json
   def create
     @membership = Membership.new(membership_params)
+    @membership.user_id = current_user.id
 
     respond_to do |format|
       if @membership.save
