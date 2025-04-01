@@ -48,9 +48,9 @@ describe "Rating" do
     let!(:rating2){ FactoryBot.create(:rating, { user: user2, beer: beer2, score: 35 }) }
 
     it "all show up on the ratings_path" do
-        visit ratings_path
-        expect(page).to have_content "#{beer1.name} 27 #{user.username}"
-        expect(page).to have_content "#{beer2.name} 35 #{user2.username}"
+      visit ratings_path
+      expect(page).to have_content "#{beer1.name} 27 #{user.username}"
+      expect(page).to have_content "#{beer2.name} 35 #{user2.username}"
     end
 
     it "any user can see only their own ratings on their profile" do
@@ -64,20 +64,20 @@ describe "Rating" do
     end
 
     it "a removed rating is also deleted from DB" do
-        rating3 = FactoryBot.create(:rating, { user: user, beer: beer2, score: 3 })
-        rating4 = FactoryBot.create(:rating, { user: user, beer: beer2, score: 2 })
-        rating5 = FactoryBot.create(:rating, { user: user, beer: beer2, score: 50 })
+      rating3 = FactoryBot.create(:rating, { user: user, beer: beer2, score: 3 })
+      rating4 = FactoryBot.create(:rating, { user: user, beer: beer2, score: 2 })
+      rating5 = FactoryBot.create(:rating, { user: user, beer: beer2, score: 50 })
 
-        visit user_path(user)
-        within(:xpath, "//li[contains(text(), '#{rating4.beer.name} #{rating4.score}')]") do
-            click_link "Delete"
-        end
+      visit user_path(user)
+      within(:xpath, "//li[contains(text(), '#{rating4.beer.name} #{rating4.score}')]") do
+        click_link "Delete"
+      end
 
-        expect(Rating.exists?(rating1.id)).to be true
-        expect(Rating.exists?(rating2.id)).to be true
-        expect(Rating.exists?(rating3.id)).to be true
-        expect(Rating.exists?(rating4.id)).to be false
-        expect(Rating.exists?(rating5.id)).to be true
+      expect(Rating.exists?(rating1.id)).to be true
+      expect(Rating.exists?(rating2.id)).to be true
+      expect(Rating.exists?(rating3.id)).to be true
+      expect(Rating.exists?(rating4.id)).to be false
+      expect(Rating.exists?(rating5.id)).to be true
     end
   end
 end
