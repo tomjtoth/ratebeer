@@ -25,9 +25,21 @@
     </ul>
     Their favorite style is <%= @user.favorite_style %>
     and favorite brewery is <%= @user.favorite_brewery.name %>
-    </br>
   <% end %>
-
+  
+  <h3>Beer Clubs</h3>
+  <ul>
+    <% @user.memberships.each do |ms| %>
+      <li>
+        <%= link_to ms.beer_club.name, ms.beer_club %>
+        <% if @user == current_user %>
+          <%= link_to "Cancel membership", ms, data: {turbo_method: :delete} %>
+        <% end %>
+      </li>
+    <% end %>
+  </ul>
+    
+  </br>
   <% if @user == current_user %>
     <%= link_to "Edit this user", edit_user_path(@user) %> |
   <% end %>
