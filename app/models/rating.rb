@@ -10,4 +10,8 @@ class Rating < ApplicationRecord
   def to_s
     "#{beer.name} #{score}"
   end
+
+  def for_session
+    "#{beer.name} #{score} points"
+  end
 end
