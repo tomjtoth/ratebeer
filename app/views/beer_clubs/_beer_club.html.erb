@@ -1,17 +1,26 @@
 <div id="<%= dom_id beer_club %>">
-  <p>
-    <strong>Name:</strong>
-    <%= beer_club.name %>
-  </p>
+  <% if @beer_club %>
+    <h2> <%= beer_club.name %> </h2>
+  <% else %>
+    <%= link_to beer_club.name, beer_club %>
+  <% end %>
 
-  <p>
-    <strong>Founded:</strong>
-    <%= beer_club.founded %>
-  </p>
+  was founded in
+  <%= beer_club.founded %>,
+  <%= beer_club.city %>
 
-  <p>
-    <strong>City:</strong>
-    <%= beer_club.city %>
-  </p>
-
+  <% if @beer_club %>
+    <% if not @beer_club.members.empty? %>
+      and has the following members:
+      <ul>
+        <% @beer_club.members.each do |member| %>
+          <li>
+            <%= link_to member.username, member %>
+          </li>
+        <% end %>
+      </ul>
+    <% else %>
+      and it has no members yet...
+    <% end %>
+  <% end %>
 </div>
