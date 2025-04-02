@@ -6,7 +6,7 @@ class BeermappingApi
 
   def self.get_places_in(city)
     # url = "http://beermapping.com/webservice/loccity/#{key}/"
-    url = "http://localhost:55581/webservice/loccity/#{key}/"
+    url = "https://beermapping-dummy.fly.dev/webservice/loccity/#{key}/"
 
     response = HTTParty.get "#{url}#{ERB::Util.url_encode(city)}"
 
