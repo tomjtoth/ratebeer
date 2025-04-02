@@ -13,6 +13,8 @@ describe "Beers page" do
     let!(:user) { FactoryBot.create :user }
     let!(:brew1) { FactoryBot.create :brewery }
     let!(:brew2) { FactoryBot.create :brewery, name: "kotimainein", year: 2005 }
+    let!(:style1) { FactoryBot.create :style }
+    let!(:ipa) { FactoryBot.create :style, text: "IPA" }
 
     before :each do
       sign_in username: "Pekka", password: "Foobar1"
@@ -48,7 +50,7 @@ end
 
 def create_beer(obj)
   fill_in('beer_name', with: obj[:name])
-  select(obj[:style], from: "beer_style") if obj[:style]
+  select(obj[:style], from: "beer_style_id") if obj[:style]
   select(obj[:brewery], from: "beer_brewery_id") if obj[:brewery]
 
   click_button "Create Beer"

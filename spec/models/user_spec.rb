@@ -1,6 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
+  let(:ipa){ FactoryBot.create(:style, text: "IPA") }
+
   it "has the username set correctly" do
     user = User.new username: "Pekka"
 
@@ -88,7 +90,7 @@ RSpec.describe User, type: :model do
 
     it "is the one with highest rating if several rated" do
       create_beers_with_many_ratings({ user: user }, 5, 10, 5, 5)
-      create_beers_with_many_ratings({ user: user, style: "IPA" }, 50)
+      create_beers_with_many_ratings({ user: user, style: ipa }, 50)
       create_beers_with_many_ratings({ user: user }, 5, 5, 5)
 
       expect(user.favorite_style).to eq("IPA")
@@ -112,7 +114,7 @@ RSpec.describe User, type: :model do
       brew3 = FactoryBot.create(:brewery)
 
       create_beers_with_many_ratings({ user: user, brewery: brew1 }, 5, 10, 5, 5)
-      create_beers_with_many_ratings({ user: user, brewery: brew2, style: "IPA" }, 50)
+      create_beers_with_many_ratings({ user: user, brewery: brew2, style: ipa }, 50)
       create_beers_with_many_ratings({ user: user, brewery: brew3 }, 5, 5, 5)
 
       expect(user.favorite_brewery).to eq(brew2)

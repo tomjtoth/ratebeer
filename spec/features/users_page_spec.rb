@@ -44,7 +44,7 @@ describe "User" do
       it "can see their favorite style and brewery" do
         visit user_path(user)
 
-        expect(page).to have_content "Their favorite style is #{beer2.style} and favorite brewery is #{beer2.brewery.name}"
+        expect(page).to have_content "Their favorite style is #{beer2.style.text} and favorite brewery is #{beer2.brewery.name}"
       end
     end
   end
