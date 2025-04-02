@@ -66,6 +66,6 @@ class StylesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def style_params
-      params.expect(style: [ :text ])
+      params.expect(style: [ :text, :description ])
     end
 end
