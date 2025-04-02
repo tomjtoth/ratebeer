@@ -14,6 +14,8 @@
       <%= form.hidden_field :user_id, value: current_user.id %>
       <%= form.submit "Join this club" %>
     <% end %>
+  <% elsif @existing_membership and @existing_membership.first %>
+    <%= link_to "Cancel membership", @existing_membership.first, data: {turbo_method: :delete} %>
   <% end %>
 
   <% if @beer_club %>
