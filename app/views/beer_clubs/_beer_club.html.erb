@@ -8,6 +8,13 @@
   was founded in
   <%= beer_club.founded %>,
   <%= beer_club.city %>
+  <% if @membership %>
+    <%= form_with(model: @membership) do |form| %>
+      <%= form.hidden_field :beer_club_id, value: @beer_club.id %>
+      <%= form.hidden_field :user_id, value: current_user.id %>
+      <%= form.submit "Join this club" %>
+    <% end %>
+  <% end %>
 
   <% if @beer_club %>
     <% if not @beer_club.members.empty? %>
