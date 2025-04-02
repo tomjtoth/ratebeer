@@ -55,7 +55,7 @@ class MembershipsController < ApplicationController
     @membership.destroy!
 
     respond_to do |format|
-      format.html { redirect_to @membership.user, status: :see_other, notice: "Membership was successfully destroyed." }
+      format.html { redirect_to @membership.user, status: :see_other, notice: "Cancelled membership at #{@membership.beer_club.name}" }
       format.json { head :no_content }
     end
   end
