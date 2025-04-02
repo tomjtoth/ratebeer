@@ -2,6 +2,12 @@ class PlacesController < ApplicationController
   def index
   end
 
+  def show
+    city = params.expect(:city)
+    id = params.expect(:id).to_i
+    @place = Rails.cache.read(city)[id-1]
+  end
+
   def search
     @places = BeermappingApi.places_in(params[:city])
     if @places.empty?
