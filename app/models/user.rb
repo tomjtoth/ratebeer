@@ -16,7 +16,7 @@ class User < ApplicationRecord
   end
 
   def favorite_style
-    favorite_by(->(rating) { rating.beer.style })
+    favorite_by(->(rating) { rating.beer.style.text })
   end
 
   def favorite_brewery
