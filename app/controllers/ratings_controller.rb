@@ -1,9 +1,5 @@
 class RatingsController < ApplicationController
   def index
-    Rating.where(user_id: nil)
-      .or(Rating.where(beer_id: nil))
-      .delete_all
-
     @ratings = Rating.all
   end
 
