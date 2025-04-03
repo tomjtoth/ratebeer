@@ -34,7 +34,8 @@
     <% @places.each do |place| %>
       <tr>
         <td><%= place.id %></td>
-        <td><%= link_to place.name, "/places/#{place.city}/#{place.id}" %></td>        <td><%= place.status %></td>
+        <td><%= link_to place.name, place_path(place[:id]) %></td>
+        <td><%= place.status %></td>
         <td><%= place.street %></td>
         <td><%= place.city %></td>
         <td><%= place.zip %></td>

@@ -3,15 +3,16 @@ class PlacesController < ApplicationController
   end
 
   def show
-    city = params.expect(:city)
-    id = params.expect(:id).to_i
-    @place = Rails.cache.read(city)[id-1]
+    city = session[:city]
+    id = params.expect(:id)
+    @place = Rails.cache.read(city.downcase).find { |c| c.id == id }
   end
 
   def search
     city = params[:city]
+    session[:city] = city
     @places = BeermappingApi.places_in(city)
-    @weather = WeatherApi.weather_in city
+    @weather = WeatherApi.weather_in(city)
     if @places.empty?
       redirect_to places_path, notice: "No locations in #{city}"
     else
