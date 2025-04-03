@@ -40,6 +40,14 @@ end
 
 
 def kumpula
+  allow(WeatherApi).to receive(:weather_in).with("kumpula").and_return({
+    city: "Kumpula",
+    temp: 27,
+    icon: "https://picsum.photos/200/300",
+    speed: 5.6,
+    dir: "SW"
+  })
+
   visit places_path
   fill_in('city', with: 'kumpula')
   click_button "Search"
