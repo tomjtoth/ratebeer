@@ -9,9 +9,11 @@ class PlacesController < ApplicationController
   end
 
   def search
-    @places = BeermappingApi.places_in(params[:city])
+    city = params[:city]
+    @places = BeermappingApi.places_in(city)
+    @weather = WeatherApi.weather_in city
     if @places.empty?
-      redirect_to places_path, notice: "No locations in #{params[:city]}"
+      redirect_to places_path, notice: "No locations in #{city}"
     else
       render :index, status: 418
     end
