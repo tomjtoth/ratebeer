@@ -16,6 +16,7 @@ class WeatherApi
     icons = curr["weather_icons"]
 
     {
+      city: city.titleize,
       temp: curr["temperature"],
       icon: icons[0],
       speed: curr["wind_speed"],

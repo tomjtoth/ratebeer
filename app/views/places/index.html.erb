@@ -9,7 +9,7 @@
 
 <% if @weather %>
   <b>
-    The current beer weather in <%= @places[0].city %>:
+    The current beer weather in <%= @weather[:city] %>:
   </b>    
 
   <%= @weather[:temp] %>˚C
