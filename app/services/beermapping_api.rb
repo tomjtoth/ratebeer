@@ -5,13 +5,10 @@ class BeermappingApi
   end
 
   def self.get_places_in(city)
-    # url = "http://beermapping.com/webservice/loccity/#{key}/"
-    # url = "https://beermapping-dummy.fly.dev/webservice/loccity/#{key}/"
     url = "https://studies.cs.helsinki.fi/beermapping/locations/"
 
     response = HTTParty.get "#{url}#{ERB::Util.url_encode(city)}"
 
-    # I have no access to the original API, only guessing here...
     bmp_locations = response.parsed_response["bmp_locations"]
     return [] if bmp_locations.nil? || bmp_locations.empty?
 
