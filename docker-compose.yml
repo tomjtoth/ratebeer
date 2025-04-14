@@ -3,7 +3,6 @@ services:
     build: .
     environment:
       # all these are read from .env by **docker**
-      - RAILS_MASTER_KEY=${RAILS_MASTER_KEY}
       - BEERMAPPING_APIKEY=${BEERMAPPING_APIKEY}
       - WEATHER_APIKEY=${WEATHER_APIKEY}
       - DATABASE_URL=${DATABASE_URL}
