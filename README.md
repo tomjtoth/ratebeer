@@ -2,7 +2,7 @@
 
 # Kuvaus
 
-Tämä on HY:n [Ruby on Rails kurssin](https://github.com/mluukkai/WebPalvelinohjelmointi2023) palautusrepo. Tuotantoversio pyörii [tässä](https://ratebeer-ttj.fly.dev)
+Tämä on HY:n [Ruby on Rails kurssin](https://github.com/mluukkai/WebPalvelinohjelmointi2023) palautusrepo. Tuotantoversio pyörii [tässä](https://ratebeer.ttj.hu)
 
 ## Apu tarkastajille
 
