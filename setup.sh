@@ -2,11 +2,6 @@
 
 # this script preps .env for docker-compose.yml
 
-# rails wants a 32-byte key
-railskeygen () {
-    tr -dc a-f0-9 < /dev/urandom | head -c 32; echo
-}
-
 # if uuidgen does not exist, implement something similar
 if [ -z "$(which uuidgen)" ]; then
   uuidgen () {
@@ -24,7 +19,6 @@ echo "\
 BEERMAPPING_APIKEY=_INSERT_YOUR_KEY_HERE_
 WEATHER_APIKEY=_INSERT_YOUR_KEY_HERE_
 
-RAILS_MASTER_KEY=$(railskeygen)
 DATABASE_URL=postgresql://${PG_USER}:${PG_PASS}@db/${PG_DB}
 
 POSTGRES_PASSWORD=${PG_PASS}
