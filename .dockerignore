@@ -10,6 +10,9 @@
 # Ignore all environment files.
 /.env*
 
+# this will be generated within each container
+/config/credentials.yml.enc
+
 # Ignore all default key files.
 /config/master.key
 /config/credentials/*.key
